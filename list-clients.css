@@ -81,7 +81,7 @@ header {
   padding: 20px 20px 0; 
 }
 
-header img {
+header > img {
   max-width: 100%;
   height: 100px;
   object-fit: cover;
@@ -91,17 +91,21 @@ header img {
   -5px -5px 15px rgba(255,128,0,.9);
 }
 
-picture{
-  position: absolute;
-  top: 50px;
-  right: 300px;
+header > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header > div > picture:first-child{
+  visibility: hidden;
 }
 
 picture img{
   filter: brightness(0) saturate(100%);
   filter: drop-shadow(3px 3px 15px rgba(0,0,0,.9));
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
 }
 
 picture a>img:hover{
@@ -118,6 +122,13 @@ picture a>img:hover{
 
   #cartes-container::-webkit-scrollbar {
     width: 0;
+  }
+
+  picture img{
+    filter: brightness(0) saturate(100%);
+    filter: drop-shadow(3px 3px 15px rgba(0,0,0,.9));
+    height: 40px;
+    width: 40px;
   }
   
 }
