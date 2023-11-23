@@ -16,27 +16,15 @@ document.addEventListener('DOMContentLoaded', function () {
   function genererDetailProduit(product) {
     const carte = document.createElement('div');
     carte.classList.add('detail-commande');
-  
-    const nom = document.createElement('small');
-    nom.textContent = "Article : " + product.name;
-    nom.innerHTML += '</br>'
 
-    const quantite = document.createElement('small');
-    quantite.textContent = "Quantité : " + product.quantity;
-    quantite.innerHTML += '</br>'
+    const content = `
+      <small>Article :  ${product.name}</small><br>
+      <small>Quantité : ${product.quantity}</small><br>
+      <small>Prix unitaire : ${product.price} €</small><br>
+      <small>Montant total : ${product.price * product.quantity} €</small><br>
+    `;
 
-    const prix = document.createElement('small');
-    prix.textContent = "Prix unitaire : " + product.price + " €";
-    prix.innerHTML += '</br>'
-
-    const montantTotal = document.createElement('small');
-    montantTotal.textContent = "Montant total : " + product.price * product.quantity  + " €";
-    
-    carte.appendChild(nom);
-    carte.appendChild(quantite);
-    carte.appendChild(prix);
-    carte.appendChild(montantTotal);
-  
+    carte.innerHTML = content
     return carte;
   }
   

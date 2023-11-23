@@ -26,50 +26,29 @@ document.addEventListener('DOMContentLoaded', function () {
   function afficherMessage(){
     const paragraphe = document.createElement('p');
 
-    const imoji = document.createElement('img');
-    imoji.src   = "./asset/imoji.png";
-    imoji.alt   = "Imoji qui pleure";
-
-    const span = document.createElement("span");
-    span.innerText = "vous n'avez aucune commande"
-
-    paragraphe.appendChild(imoji);
-    paragraphe.appendChild(span)
-    
+    const content = `
+        <img src="./asset/imoji.png" alt="Imoji qui pleure">
+        <span>vous n'avez aucune commande</span>
+    `
+    paragraphe.innerHTML = content
     return paragraphe;
   }
   
   function genererCarteClient(commande, index) {
     const carte = document.createElement('div');
     carte.classList.add('carte-client');
-    
-    const rang = document.createElement('span');
-    rang.textContent = index + 1;
 
-    const clientInfos = document.createElement('div');
-    clientInfos.classList.add("client-infos");
+    const content = `
+      <span> ${index + 1} </span>
+      <div class="client-infos">
+        <small>${"Montant de la commande : " + commande.totalAmount + " €"}</small></br>
+        <h3>${commande.user.firstName + " " + commande.user.lastName}</h3>
+        <small>${"Téléphone : " + commande.user.phone}</small></br>
+        <small>${"Adresse : " + commande.deliveryAddress}</small>
+      </div>
+    ` 
 
-    const montantCommande = document.createElement('small');
-    montantCommande.textContent = "Montant de la commande : " + commande.totalAmount + " €";
-    montantCommande.innerHTML += '</br>'
-  
-    const nom = document.createElement('h3');
-    nom.textContent = commande.user.firstName + " " + commande.user.lastName;
-
-    const tel = document.createElement('small');
-    tel.textContent = "Téléphone : " + commande.user.phone ;
-    tel.innerHTML += '</br>'
-
-    const adress = document.createElement('small');
-    adress.textContent = "Adresse : " + commande.deliveryAddress;
-
-    clientInfos.appendChild(nom);
-    clientInfos.appendChild(montantCommande);
-    clientInfos.appendChild(tel);
-    clientInfos.appendChild(adress);
-    
-    carte.appendChild(rang);
-    carte.appendChild(clientInfos);
+    carte.innerHTML = content;
   
     return carte;
   }
