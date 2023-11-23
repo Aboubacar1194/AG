@@ -12,6 +12,13 @@ body {
   overflow: auto;
 }
 
+#resume-container>p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+}
+
 .carte-statistiques {
   padding: 20px;
   margin:  20px;

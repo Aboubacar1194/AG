@@ -8,12 +8,20 @@ body {
 }
 
 #cartes-container{
+  position: relative;
   height: 65vh;
   overflow: auto;
 }
 
 #cartes-container::-webkit-scrollbar {
   width: 0;
+}
+
+#cartes-container>p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
 }
 
 .carte-client {
@@ -51,7 +59,7 @@ h1{
   margin: 10px 0;
 }
 
-span {
+.carte-client > span {
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -61,7 +69,7 @@ span {
   z-index: 1;
 }
 
-span::before{
+.carte-client > span::before{
   content: "";
   position: absolute;
   display: block;

@@ -1,20 +1,43 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     // Récupérez les données depuis la session storage.
     const donneesJSON = sessionStorage.getItem('donneesCommandes');
     const donneesCommandes = JSON.parse(donneesJSON);
-  
-    // Générez les cartes des clients.
-    const cartesContainer = document.getElementById('cartes-container');
-    donneesCommandes.forEach((commande, index) => {
-      const carte = genererCarteClient(commande, index);
-      cartesContainer.appendChild(carte);
 
-      // Ajoutez un gestionnaire d'événements au clic sur chaque carte.
-    carte.addEventListener('click', function () {
-        afficherDetailCommande(commande.products);
+    const cartesContainer = document.getElementById('cartes-container');
+
+    if (donneesCommandes.length === 0) {
+      const p = afficherMessage();
+      cartesContainer.appendChild(p)
+    }else{
+      // Générez les cartes des clients.
+      donneesCommandes.forEach((commande, index) => {
+        const carte = genererCarteClient(commande, index);
+        cartesContainer.appendChild(carte);
+
+        // Ajoutez un gestionnaire d'événements au clic sur chaque carte.
+        carte.addEventListener('click', function () {
+            afficherDetailCommande(commande.products);
+        });
       });
-    });
+    } 
   });
+
+  function afficherMessage(){
+    const paragraphe = document.createElement('p');
+
+    const imoji = document.createElement('img');
+    imoji.src   = "./asset/imoji.png";
+    imoji.alt   = "Imoji qui pleure";
+
+    const span = document.createElement("span");
+    span.innerText = "vous n'avez aucune commande"
+
+    paragraphe.appendChild(imoji);
+    paragraphe.appendChild(span)
+    
+    return paragraphe;
+  }
   
   function genererCarteClient(commande, index) {
     const carte = document.createElement('div');

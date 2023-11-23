@@ -5,12 +5,33 @@ document.addEventListener('DOMContentLoaded', function () {
   
     // Affichez les statistiques.
     const statistiquesContainer = document.getElementById('resume-container');
-    
-    infoArticleCommandeJSON.forEach(articleCommande => {
-      const statistiquesCarte = genererStatistiquesCarte(articleCommande);
-      statistiquesContainer.appendChild(statistiquesCarte);
-    });
+
+    if (infoArticleCommandeJSON.length === 0) {
+      const p = afficherMessage();
+      statistiquesContainer.appendChild(p)
+    }else{
+      infoArticleCommandeJSON.forEach(articleCommande => {
+        const statistiquesCarte = genererStatistiquesCarte(articleCommande);
+        statistiquesContainer.appendChild(statistiquesCarte);
+      });
+    }
   });
+
+  function afficherMessage(){
+    const paragraphe = document.createElement('p');
+
+    const imoji = document.createElement('img');
+    imoji.src   = "./asset/imoji.png";
+    imoji.alt   = "Imoji qui pleure";
+
+    const span = document.createElement("span");
+    span.innerText = "vous n'avez aucune commande"
+
+    paragraphe.appendChild(imoji);
+    paragraphe.appendChild(span)
+    
+    return paragraphe;
+  }
   
   function genererStatistiquesCarte(articleCommande) {
     const carte = document.createElement('div');
