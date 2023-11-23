@@ -50,8 +50,8 @@ function genererCarteClient(commande, index) {
       <h3>${commande.user.firstName + " " + commande.user.lastName}</h3>
       <small>Montant de la commande : ${commande.totalAmount} €</small></br>
       <address>
-      <small>Téléphone :${commande.user.phone}</small></br>
-      <small>Adresse : ${commande.deliveryAddress.number} ${commande.deliveryAddress.street} ${commande.deliveryAddress.zipCode} </small>
+        <small>Téléphone :<a href="tel:${commande.user.phone}">${commande.user.phone}</a></small></br>
+        <small>Adresse : ${commande.deliveryAddress.number} ${commande.deliveryAddress.street} ${commande.deliveryAddress.zipCode} </small>
       </address>
     </div>
   ` 
