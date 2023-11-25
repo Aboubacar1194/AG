@@ -51,7 +51,11 @@ function genererCarteClient(commande, index) {
       <small>Montant de la commande : ${commande.totalAmount} €</small></br>
       <address>
         <small>Téléphone :<a href="tel:${commande.user.phone}">${commande.user.phone}</a></small></br>
-        <small>Adresse : ${commande.deliveryAddress.number} ${commande.deliveryAddress.street} ${commande.deliveryAddress.zipCode} </small>
+        <small>Adresse : 
+          <a href="https://www.google.com/maps/search/?api=1&query=${commande.deliveryAddress.number}+Rue+de+${commande.deliveryAddress.street},${commande.deliveryAddress.zipCode},France">
+            ${commande.deliveryAddress.number} ${commande.deliveryAddress.street} ${commande.deliveryAddress.zipCode}
+          </a>
+        </small>
       </address>
     </div>
   ` 
