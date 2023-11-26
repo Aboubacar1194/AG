@@ -74,6 +74,39 @@ picture a>img:hover{
   cursor: pointer;
 }
 
+footer{
+  display: flex;
+  justify-content: center;
+}
+
+footer > button > img{
+  height: 1.65em;
+  width: auto;
+  padding-left: 1em;
+}
+
+button{
+  height: 1.87em;
+  width: 25%;
+  border: solid black 1px;
+  background-color: orange;
+  background-image: linear-gradient(to left, rgba(255,128,0,.6), rgba(255,255,255,.7));
+  box-shadow: inset 5px 5px 15px rgba(0,0,0,.3),
+  inset -5px -5px 15px rgba(255,255,255,.3),
+  5px 5px 15px rgba(0,0,0,.4),
+  -5px -5px 15px rgba(255,255,255,.4);
+  text-shadow: 1px 1px 6px black;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:active{
+  box-shadow: inset 5px 5px 15px rgba(0,0,0,.3),
+  inset -5px -5px 15px rgba(255,255,255,.3)
+}
+
 @media screen and (min-width: 1080px) {
   #detail-container{
     width: 35%;
@@ -89,6 +122,10 @@ picture a>img:hover{
     filter: drop-shadow(3px 3px 15px rgba(0,0,0,.9));
     height: 40px;
     width: 40px;
+  }
+
+  button{
+    width: 10%;
   }
   
 }

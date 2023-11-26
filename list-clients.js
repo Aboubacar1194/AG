@@ -2,32 +2,41 @@
 document.addEventListener('DOMContentLoaded', function () {
   const cartesContainer = document.getElementById('cartes-container');
 
-    // Récupérez les données depuis la session storage.
-    const donneesJSON = sessionStorage.getItem('donneesCommandes');
-    if (donneesJSON === "undefined") {
-      const p = afficherMessageErreur();
-      cartesContainer.appendChild(p)
-    }else{
-      const donneesCommandes = JSON.parse(donneesJSON);
-    
-      if (donneesCommandes.length === 0) {
-        const p = afficherMessageErreur();
-        cartesContainer.appendChild(p)
-      }else{
-        // Générez les cartes des clients.
-        donneesCommandes.forEach((commande, index) => {
-          const carte = genererCarteClient(commande, index);
-          cartesContainer.appendChild(carte);
+  // Récupérez les données depuis la session storage.
+  const donneesJSON = sessionStorage.getItem('donneesCommandes');
 
-          // Ajoutez un gestionnaire d'événements au clic sur chaque carte.
-          carte.addEventListener('click', function () {
-              afficherDetailCommande(commande.products);
+  if (donneesJSON === "undefined") {
+      const p = afficherMessageErreur();
+      cartesContainer.appendChild(p);
+  } else {
+      const donneesCommandes = JSON.parse(donneesJSON);
+
+      if (donneesCommandes.length === 0) {
+          const p = afficherMessageErreur();
+          cartesContainer.appendChild(p);
+      } else {
+          // Générez les cartes des clients.
+          donneesCommandes.forEach((commande, index) => {
+              const carte = genererCarteClient(commande, index);
+              cartesContainer.appendChild(carte);
+
+              // Ajoutez un gestionnaire d'événements au clic sur chaque carte.
+              carte.addEventListener('click', function (event) {
+                  afficherDetailCommande(commande.products);
+                  // Sauvegarde la position de défilement dans sessionStorage
+                  sessionStorage.setItem('positionScroll', cartesContainer.scrollTop);
+              });
           });
-        });
-      } 
-    }
-    
-  });
+      }
+  }
+
+  // Restaure la position de défilement après un rechargement de la page
+  const positionScroll = sessionStorage.getItem('positionScroll');
+  if (positionScroll !== null) {
+      cartesContainer.scrollTop = parseInt(positionScroll, 10);
+  }
+});
+
 
 function afficherMessageErreur(){
   const paragraphe = document.createElement('p');
