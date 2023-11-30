@@ -27,4 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
     carte.innerHTML = content
     return carte;
   }
+
+  function confirmerLivraison(event){
+    event.stopPropagation();
+
+    // To do : faire appel d'un endpoint pour modifier l'etat du boolean delivered
+
+    window.location.href = "./list-clients.html"
+  }
   

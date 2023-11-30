@@ -11,7 +11,8 @@ async function chargerDonnees() {
     spinner.style.visibility = 'visible'; // Par défaut on affiche le spinner
   }, 500);
 
-  const serviceUrl = "https://afristore-api.vercel.app/api/orders/admin";
+  //const serviceUrl = "https://afristore-api.vercel.app/api/orders/admin";
+  const serviceUrl = "./asset/donneesCommandes.json"
   try {
     // le code suivant est là juste pour pouvoir tester le spinner et le timeout
     // const response = await Promise.race([

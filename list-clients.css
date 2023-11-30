@@ -7,82 +7,7 @@ body {
   background-image: linear-gradient(to left, rgba(255,128,0,.6), rgba(255,255,255,.3));
 }
 
-#cartes-container{
-  position: relative;
-  height: 65vh;
-  overflow: auto;
-}
-
-#cartes-container::-webkit-scrollbar {
-  width: 0;
-}
-
-#cartes-container>p{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3em;
-}
-
-.carte-client {
-  display: flex;
-  margin: 10px 15px; 
-  border-radius: 5px;  
-}
-
-.client-infos{
-  width: 100%;
-  border-radius: 15px;
-  padding: 10px;
-  box-shadow: inset 5px 5px 15px rgba(0,0,0,.2),
-  inset -5px -5px 15px rgba(255,255,255,.2),
-  5px 5px 15px rgba(0,0,0,.10),
-  -5px -5px 15px rgba(255,255,255,.10);
-}
-
-.client-infos:active{
-  box-shadow: inset 5px 5px 15px rgba(0,0,0,.2),
-  inset -5px -5px 15px rgba(255,255,255,.2)
-}
-
-.client-infos small{
-  margin-left: 20px;
-}
-
-.client-infos h3{
-  margin: 5px 0 10px 20px;
-  width: 100%;
-}
-
-h1{
-  text-align: center;
-  margin: 10px 0;
-}
-
-.carte-client > span {
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  right: -5px;
-  z-index: 1;
-}
-
-.carte-client > span::before{
-  content: "";
-  position: absolute;
-  display: block;
-  height: 35px;
-  width: 35px;
-  background-image: linear-gradient(to left, rgba(255,128,0,.6), rgba(255,255,255,.3));
-  border-radius: 50%;
-  z-index: -1;
-  box-shadow: inset 5px 5px 15px rgba(0,0,0,.5),
-  inset -5px -5px 15px rgba(255,255,255,.5),
-  5px 5px 15px rgba(0,0,0,.15),
-  -5px -5px 15px rgba(255,255,255,.15);
-}
+/* L'entête */
 
 header {
   text-align: center;
@@ -121,6 +46,118 @@ picture a>img:hover{
   cursor: pointer;
 }
 
+
+/* Conteneur main de l'ensemble des cartes */
+#cartes-container{
+  position: relative;
+  height: 65vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#cartes-container::-webkit-scrollbar {
+  width: 0;
+}
+
+#cartes-container>p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+}
+
+/* le conteneur de chaque carte */
+
+.carte-client {
+  display: flex;
+  margin: 10px 15px; 
+  border-radius: 5px;
+}
+
+.carte-client > span {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  right: -5px;
+  z-index: 1;
+}
+
+.carte-client > span::before{
+  content: "";
+  position: absolute;
+  display: block;
+  height: 35px;
+  width: 35px;
+  background-image: linear-gradient(to left, rgba(255,128,0,.6), rgba(255,255,255,.3));
+  border-radius: 50%;
+  z-index: -1;
+  box-shadow: inset 5px 5px 15px rgba(0,0,0,.5),
+  inset -5px -5px 15px rgba(255,255,255,.5),
+  5px 5px 15px rgba(0,0,0,.15),
+  -5px -5px 15px rgba(255,255,255,.15);
+}
+
+/* element contenant les informations du client et de sa commande */
+
+.client-infos{
+  width: 100%;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: inset 5px 5px 15px rgba(0,0,0,.2),
+  inset -5px -5px 15px rgba(255,255,255,.2),
+  5px 5px 15px rgba(0,0,0,.10),
+  -5px -5px 15px rgba(255,255,255,.10);
+}
+
+.client-infos:active{
+  box-shadow: inset 5px 5px 15px rgba(0,0,0,.2),
+  inset -5px -5px 15px rgba(255,255,255,.2)
+}
+
+.client-infos small{
+  margin-left: 20px;
+}
+
+.client-infos h3{
+  margin: 5px 0 10px 20px;
+  width: 100%;
+}
+
+/* le buton livré */
+
+.livraison-btn-container{
+  position: absolute;
+  right: -108px;
+  height: 110px;
+}
+
+.livraison-btn{
+  border: none;
+  width: 100px;
+  height: 100%;
+  background-color: #6a994e;
+  border-radius: 15px;
+  box-shadow: inset 5px 5px 15px rgba(0,0,0,.2),
+  inset -5px -5px 15px rgba(255,255,255,.2),
+  5px 5px 15px rgba(0,0,0,.10),
+  -5px -5px 15px rgba(255,255,255,.10);
+}
+
+/* gestion de la translation */
+
+.balayage-gauche{
+  transform: translateX(-100px);
+  transition: transform ease-in-out 1s;
+}
+
+.balayage-droite{
+  background-color: #936639;
+}
+
+/* les media query pour le responsive */
+
 @media screen and (min-width: 1080px) {
   #cartes-container{
     width: 40%;
@@ -138,7 +175,11 @@ picture a>img:hover{
     height: 40px;
     width: 40px;
   }
-  
+
+  .livraison-btn-container{
+    position: relative;
+    left: 10px;
+  }
 }
 
 

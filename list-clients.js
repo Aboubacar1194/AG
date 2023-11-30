@@ -21,10 +21,14 @@ document.addEventListener('DOMContentLoaded', function () {
               cartesContainer.appendChild(carte);
 
               // Ajoutez un gestionnaire d'événements au clic sur chaque carte.
-              carte.addEventListener('click', function (event) {
+              carte.addEventListener('click', function () {
                   afficherDetailCommande(commande.products);
                   // Sauvegarde la position de défilement dans sessionStorage
                   sessionStorage.setItem('positionScroll', cartesContainer.scrollTop);
+              });
+
+              carte.querySelector('.client-infos').addEventListener('touchmove', function (event) {
+                balayerVersGauche(carte, event)
               });
           });
       }
@@ -36,18 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
       cartesContainer.scrollTop = parseInt(positionScroll, 10);
   }
 });
-
-
-function afficherMessageErreur(){
-  const paragraphe = document.createElement('p');
-
-  const content = `
-      <img src="./asset/imoji.png" alt="Imoji qui pleure">
-      <span>vous n'avez aucune commande</span>
-  `
-  paragraphe.innerHTML = content
-  return paragraphe;
-}
 
 function genererCarteClient(commande, index) {
   const carte = document.createElement('div');
@@ -67,10 +59,30 @@ function genererCarteClient(commande, index) {
         </small>
       </address>
     </div>
+    <div class="livraison-btn-container">
+        <button class="livraison-btn" onclick="confirmerLivraison(event)">Livré</button>
+    </div>
   ` 
   carte.innerHTML = content;
   return carte;
 }
+
+function afficherMessageErreur(){
+  const paragraphe = document.createElement('p');
+
+  const content = `
+      <img src="./asset/imoji.png" alt="Imoji qui pleure">
+      <span>vous n'avez aucune commande</span>
+  `
+  paragraphe.innerHTML = content
+  return paragraphe;
+}
+
+function balayerVersGauche(carte, event){
+  event.stopPropagation();
+   carte.classList.add('balayage-gauche')
+}
+
 
 function afficherDetailCommande(products) {
   // Enregistrez les données des produits de la commande dans le session storage.
@@ -80,5 +92,15 @@ function afficherDetailCommande(products) {
   window.location.href = 'commande-detail.html';
 }
 
-  
-  
+function confirmerLivraison(event){
+  event.stopPropagation();
+
+  // récuperer 
+  const carte = event.target.parentNode.previousElementSibling;
+  const conteneur = carte.parentNode;
+
+  conteneur.classList.remove('balayage-gauche');
+  carte.classList.add('balayage-droite');
+
+  conteneur.style.pointerEvents = 'none';
+}
